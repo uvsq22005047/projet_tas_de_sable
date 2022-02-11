@@ -24,15 +24,14 @@ def creation_configuration():
     configuration = np.random.randint(10, size=(3,3))
     return (configuration)
 
-creation_configuration()
-    
+
 
 #création des widgets
-creation_configuration = tk.Button (text ='Création', command = creation_configuration)
+button_creation_configuration = tk.Button (text ='Création', command = creation_configuration())
 
 
 #placement des widgets
-creation_configuration.grid(column=0, row = 1)
+button_creation_configuration.grid(column=0, row = 1)
 
 #lancement de la fenetre
 racine.mainloop()
