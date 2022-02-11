@@ -5,26 +5,40 @@
 # Erwan MAIRE 
 # https://github.com/uvsq22005047/projet_tas_de_sable.git
 #########################################################
-import tkinter as tk
 
-#création de la fenetre grafique
-
+import tkinter as tk 
+import numpy as np
 
 #création des variables global
+longueur = 500
+largeur = 500
 
+#création de la fenetre graphique
+racine = tk.Tk()
+canvas = tk.Canvas (racine, bg='white', height=longueur, width=largeur)
+canvas.grid()
 
-#création des fonction
-def création_configuration():
+#création des fonctions
+def creation_configuration():
     """fonction qui crée un configuration"""
-    pass
+    configuration = np.random.randint(10, size=(3,3))
+    return (configuration)
 
-
+creation_configuration()
+    
 
 #création des widgets
+creation_configuration = tk.Button (text ='Création', command = creation_configuration)
 
 
 #placement des widgets
-
+creation_configuration.grid(column=0, row = 1)
 
 #lancement de la fenetre
+racine.mainloop()
+
+
+
+
+
 
