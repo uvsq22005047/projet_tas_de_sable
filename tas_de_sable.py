@@ -22,12 +22,12 @@ canvas.grid()
 def creation_configuration():
     """fonction qui crée un configuration"""
     configuration = np.random.randint(10, size=(3,3))
-    return (configuration)
+    print(configuration)
 
 
 
 #création des widgets
-button_creation_configuration = tk.Button (text ='Création', command = creation_configuration())
+button_creation_configuration = tk.Button (text ='Création', command = lambda : creation_configuration())
 
 
 #placement des widgets
