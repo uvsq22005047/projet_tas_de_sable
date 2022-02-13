@@ -2,7 +2,7 @@
 # Groupe LDDBI 6
 # Clémence GERMETTE
 # Sofia TERKI
-# Erwan MAIRE 
+# Erwan MAIRE
 # https://github.com/uvsq22005047/projet_tas_de_sable.git
 #########################################################
 
@@ -12,6 +12,7 @@ import numpy as np
 #création des variables global
 longueur = 500
 largeur = 500
+configuration = []
 
 #création de la fenetre graphique
 racine = tk.Tk()
@@ -21,6 +22,7 @@ canvas.grid()
 #création des fonctions
 def creation_configuration():
     """fonction qui crée un configuration"""
+    global configuration
     configuration = np.random.randint(10, size=(3,3))
     print(configuration)
 
