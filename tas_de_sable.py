@@ -14,7 +14,7 @@ import random
 #création des variables global
 LONGUEUR = 500
 LARGEUR = 500
-TAILLE_GRILLE = 20
+TAILLE_GRILLE = 3
 configuration = []
 historique = []
 
