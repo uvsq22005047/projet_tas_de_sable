@@ -53,7 +53,13 @@ def sauvegarder_configuration():
     print(historique)
 
 
-
+def instable():
+    global configuration, liste_instable
+    liste_instable = []
+    for i in range(TAILLE_GRILLE):
+            for j in range(TAILLE_GRILLE):
+                if configuration[i][j] > 3:
+                    liste_instable.append(configuration[i][j])
 
 
 def stabilisation():
@@ -76,8 +82,11 @@ def stabilisation():
                 else:
                     configuration[i][j+1] += 1
                     configuration[i][j-1] += 1
-                    
     affichage()
+    instable()  
+    if liste_instable != []:
+        canvas.after(1000, stabilisation)         
+        
 
 
 
