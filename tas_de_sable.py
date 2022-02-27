@@ -13,7 +13,7 @@ import random
 
 #Constante
 HAUTEUR, LARGEUR = 500, 500
-TAILLE_GRILLE = 100
+TAILLE_GRILLE = 30
 
 #variables global
 configuration = []
