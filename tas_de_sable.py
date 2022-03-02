@@ -13,15 +13,28 @@ import random
 
 #Constante
 HAUTEUR, LARGEUR = 500, 500
-TAILLE_GRILLE = 3
+TAILLE_GRILLE = 30
 
 #variables global
 configuration = []
 liste_widgets = []
 historique = []
 
+#############
+# fonctions #
+#############
 
-#fonctions
+#fonction d'affichage
+
+
+def affichage_couleur():
+    canvas.delete('all')
+    del liste_widgets[:]
+    for i in range(TAILLE_GRILLE):
+        for j in range(TAILLE_GRILLE):
+            liste_widgets.append(canvas.create_rectangle(i*(LARGEUR/TAILLE_GRILLE), j*(HAUTEUR/TAILLE_GRILLE),
+             (i+1)*(LARGEUR/TAILLE_GRILLE), (j+1)*(HAUTEUR/TAILLE_GRILLE),
+             fill = '#{:02x}{:02x}{:02x}'.format(2*configuration[i][j], 2*configuration[i][j], 2*configuration[i][j])))
 
 
 def affichage():
@@ -34,18 +47,25 @@ def affichage():
     print(liste_widgets)
 
 
+#création configuration
+
 def config_aleatoire():
     global configuration
     if configuration != []:
         configuration = []
-
     for i in range(TAILLE_GRILLE):
-            configuration.append([random.randint(0,10) for j in range(TAILLE_GRILLE)])
+            configuration.append([random.randint(0, 15) for j in range(TAILLE_GRILLE)])
     print(configuration)
+    affichage_couleur()
 
-    affichage()
+def config_max():
+    global configuration
+    if configuration != []:
+        configuration = []
+    for i in range(TAILLE_GRILLE):
+            configuration.append([4 for j in range(TAILLE_GRILLE)])
+    affichage_couleur()
 
-    
            
 def sauvegarder_configuration():
     global historique
@@ -82,14 +102,11 @@ def stabilisation():
                 else:
                     configuration[i][j+1] += 1
                     configuration[i][j-1] += 1
-    affichage()
+    affichage_couleur()
     instable()  
     if liste_instable != []:
-        canvas.after(1000, stabilisation)         
+        canvas.after(1, stabilisation)         
         
-
-
-
 
 #création de la fenetre graphique
 racine = tk.Tk()
@@ -100,19 +117,21 @@ canvas = tk.Canvas (racine, bg='white', height=HAUTEUR, width=LARGEUR)
 button_creation_configuration = tk.Button (text ='Création', command = lambda : config_aleatoire())
 button_sauvegarder = tk.Button(text = 'Sauvegarder', command = lambda : sauvegarder_configuration())
 button_stabilisation = tk.Button(text="Stabiliser", command = lambda : stabilisation()) 
+button_max = tk.Button(text="max", command = lambda : config_max()) 
 
 #placement des widgets
-canvas.grid(column=0, columnspan=3)
+canvas.grid(column=0, columnspan=4)
 button_creation_configuration.grid(column=0, row = 1)
 button_sauvegarder.grid(column=2, row = 1)
 button_stabilisation.grid(column=1, row = 1)
+button_max.grid(column=3, row = 1)
 
 #lancement de la fenetre
 racine.mainloop()
 
 
 
-
+#change
 
 
 #test 1
