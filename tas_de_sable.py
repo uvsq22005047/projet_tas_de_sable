@@ -27,7 +27,7 @@ historique = []
 #fonction d'affichage
 
 
-def affichage_couleur():
+def affichage_gris():
     canvas.delete('all')
     del liste_widgets[:] 
     for i in range(TAILLE_GRILLE):
@@ -44,18 +44,20 @@ def affichage_couleur():
     for i in range(TAILLE_GRILLE):
         for j in range(TAILLE_GRILLE):
             if configuration[i][j] == 0:
-                color = "red"
-            elif configuration[i][j] == 1:
                 color = "blue"
+            elif configuration[i][j] == 1:
+                color = "green"
             elif configuration[i][j] == 2:
                 color = "yellow"
             elif configuration[i][j] == 3:
-                color = "green"
+                color = "orange"
+            elif configuration[i][j] > 3:
+                color = "red"
             liste_widgets.append(canvas.create_rectangle(i*(LARGEUR/TAILLE_GRILLE), j*(HAUTEUR/TAILLE_GRILLE),
              (i+1)*(LARGEUR/TAILLE_GRILLE), (j+1)*(HAUTEUR/TAILLE_GRILLE),fill = color, outline = color))
 
 
-def affichage():
+def affichage_chiffre():
     canvas.delete('all')
     del liste_widgets[:]
     for i in range(TAILLE_GRILLE):
@@ -72,7 +74,7 @@ def config_aleatoire():
     if configuration != []:
         configuration = []
     for i in range(TAILLE_GRILLE):
-            configuration.append([random.randint(0, 3) for j in range(TAILLE_GRILLE)])
+            configuration.append([random.randint(0, 4) for j in range(TAILLE_GRILLE)])
     print(configuration)
     affichage_couleur()
 
@@ -164,12 +166,12 @@ button_max = tk.Button(text="max", command = lambda : config_max())
 button_pile_centree = tk.Button(text = "Pile centrée", command = lambda : config_Pile_centree() )
 
 #placement des widgets
-canvas.grid(column=0, columnspan=4) 
+canvas.grid(column=0, columnspan=5) 
 button_creation_configuration.grid(column=0, row = 1)
 button_sauvegarder.grid(column=2, row = 1)
 button_stabilisation.grid(column=1, row = 1)
 button_max.grid(column=3, row = 1)
-button_pile_centree(column = 4, row = 1)
+button_pile_centree.grid(column = 4, row = 1)
 
 #lancement de la fenetre
 racine.mainloop()
