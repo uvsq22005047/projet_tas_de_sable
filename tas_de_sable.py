@@ -165,6 +165,7 @@ button_stabilisation = tk.Button(text="Stabiliser", command = lambda : stabilisa
 button_max = tk.Button(text="max", command = lambda : config_max()) 
 button_pile_centree = tk.Button(text = "Pile centrée", command = lambda : config_Pile_centree() )
 button_double_max = tk.Button(text = "Double max")
+
 #placement des widgets
 canvas.grid(column=0, columnspan=6) 
 button_creation_configuration.grid(column=0, row = 1)
@@ -173,6 +174,7 @@ button_stabilisation.grid(column=1, row = 1)
 button_max.grid(column=3, row = 1)
 button_pile_centree.grid(column = 4, row = 1)
 button_double_max.grid(column=5, row=1)
+
 #lancement de la fenetre
 racine.mainloop()
 
