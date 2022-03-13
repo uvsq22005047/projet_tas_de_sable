@@ -100,10 +100,13 @@ def config_Pile_centree():
 
 """"Fonction qui additionne la configuration Max stable avec elle-même"""
 def config_double_max_stable():
-    pass
+     global configuration
+     configuration = (addition_configurations(config_max()))
 
 def config_Identity():
-    pass
+    global configuration
+    configuration = (soustraction_configuration(config_double_max_stable()))
+    affichage_couleur()
 
 
 
@@ -147,11 +150,19 @@ def stabilisation():
     if liste_instable != []:
         canvas.after(1, stabilisation)    
 
-"""Fonction qui permet d'additionner les éléments case par case deux configurations """
+"""Fonction qui permet d'additionner les éléments case par case de deux configurations """
 def addition_configurations():
-    pass
+    somme = [[0]*TAILLE_GRILLE for e in range (TAILLE_GRILLE)]
+    for i in range (TAILLE_GRILLE):
+        for j in range(TAILLE_GRILLE):
+            somme[i][j] = configuration[i][j] + configuration[i][j]
 
-        
+"""Fonction qui permet de soustraire les éléments case par case de deux configurations """
+def soustraction_configuration(): 
+    difference = [[0]*TAILLE_GRILLE for e in range (TAILLE_GRILLE)]
+    for i in range (TAILLE_GRILLE):
+        for j in range(TAILLE_GRILLE):
+            difference[i][j] = configuration[i][j] - configuration[i][j]        
 
 #création de la fenetre graphique
 racine = tk.Tk()
@@ -164,17 +175,18 @@ button_sauvegarder = tk.Button(text = 'Sauvegarder', command = lambda : sauvegar
 button_stabilisation = tk.Button(text="Stabiliser", command = lambda : stabilisation()) 
 button_max = tk.Button(text="max", command = lambda : config_max()) 
 button_pile_centree = tk.Button(text = "Pile centrée", command = lambda : config_Pile_centree() )
-button_double_max = tk.Button(text = "Double max")
+button_double_max = tk.Button(text = "Double max", command = lambda: config_double_max_stable())
+boutton_identity = tk.Button(text = "Identité", command = lambda: config_Identity() )
 
 #placement des widgets
-canvas.grid(column=0, columnspan=6) 
+canvas.grid(column=0, columnspan=7) 
 button_creation_configuration.grid(column=0, row = 1)
 button_sauvegarder.grid(column=2, row = 1)
 button_stabilisation.grid(column=1, row = 1)
 button_max.grid(column=3, row = 1)
 button_pile_centree.grid(column = 4, row = 1)
 button_double_max.grid(column=5, row=1)
-
+boutton_identity.grid(column = 6, row = 1 )
 #lancement de la fenetre
 racine.mainloop()
 
